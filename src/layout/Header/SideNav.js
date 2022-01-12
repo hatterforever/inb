@@ -4,14 +4,10 @@ import { Link } from "react-router-dom";
 
 import { TABS, MEGAMENU } from "./NavBar";
 
-// import { Animated } from "react-animated-css";
-
 import "./SideNav.css";
 
 const SideNav = ({ show, onClose, onTabSelect, activeId }) => {
 	const [activeSubmenu, setActiveSubmenu] = useState(null);
-
-	const categoryItems = MEGAMENU.filter((curr, i) => i <= 1);
 
 	const animate = show
 		? "visible animate__slideInRight"
@@ -37,103 +33,76 @@ const SideNav = ({ show, onClose, onTabSelect, activeId }) => {
 			<ul>
 				{TABS.map((tab) => (
 					<Fragment key={tab.id}>
-						<li
-							className={`p-4 border-b border-slate-200 font-semibold flex items-center cursor-pointer ${
-								activeId === tab.id
-									? " text-cyan-400 duration-300"
-									: "text-gray-800 duration-300"
-							}`}
-							onClick={() => {
-								toggleSubmenuHandler(activeSubmenu);
-								onTabSelect(tab.id);
-							}}
-						>
-							<i className={`${tab.iconClass} ml-2`}></i>
-							<span className="ml-auto">{tab.text}</span>
-							<i
-								className={`fas fa-chevron-down transition-transform  origin-center ${
-									activeId === tab.id
-										? "-rotate-180 duration-500"
-										: "rotate-0 duration-300"
-								}`}
-							></i>
-						</li>
-						<ul
-							className={`bg-gray-200 divide-y divide-gray-300 transition-all origin-top duration-500 ${
-								activeId === tab.id
-									? "scale-y-100  max-h-[500%]"
-									: "scale-y-0 max-h-0"
-							}`}
-							// style={{ transition: "max-height 0.5s ease-in" }}
-						>
-							{categoryItems.map((col, index) => (
-								<li key={index} className="py-4 px-8 text-right">
-									<Link
-										to="#!"
-										className={`flex justify-between transition-colors ${
-											activeSubmenu === index
-												? " text-cyan-400 duration-300"
-												: "text-gray-700 duration-300"
+						{tab.id === 3 ? (
+							<li className="p-4 border-b border-slate-200 font-semibold flex items-center cursor-pointer text-gray-800">
+								<i className={`${tab.iconClass} ml-2`}></i>
+								<Link to="/" onClick={onClose}>
+									خانه
+								</Link>
+							</li>
+						) : (
+							<Fragment>
+								{" "}
+								<li
+									className={`p-4 border-b border-slate-200 font-semibold flex items-center cursor-pointer ${
+										activeId === tab.id
+											? " text-cyan-400 duration-300"
+											: "text-gray-800 duration-300"
+									}`}
+									onClick={() => {
+										toggleSubmenuHandler(activeSubmenu);
+										onTabSelect(tab.id);
+									}}
+								>
+									<i className={`${tab.iconClass} ml-2`}></i>
+									<span className="ml-auto">{tab.text}</span>
+									<i
+										className={`fas fa-chevron-down transition-transform  origin-center ${
+											activeId === tab.id
+												? "-rotate-180 duration-500"
+												: "rotate-0 duration-300"
 										}`}
-										onClick={() => toggleSubmenuHandler(index)}
-									>
-										{col.header}
-										<i
-											className={`fas fa-chevron-down transition-transform duration-500 origin-center ${
-												activeSubmenu === index ? "-rotate-180" : "rotate-0"
-											}`}
-										></i>
-									</Link>
-									<ul
-										className={`text-gray-700 mt-3 transition-all origin-top duration-500 ${
-											activeSubmenu === index
-												? "scale-y-100  max-h-[500%]"
-												: "scale-y-0 max-h-0"
-										}`}
-									>
-										{col.subs.map((item, index) => (
-											<li key={index} className="text-sm mb-1 px-4">
-												<a href="#!">{item}</a>
-											</li>
-										))}
-									</ul>
+									></i>
 								</li>
-							))}
-						</ul>
-
-						{/* {activeId === tab.id && (
-							<ul className="bg-gray-200 divide-y divide-gray-300">
-								{categoryItems.map((col, index) => (
-									<li key={index} className="py-4 px-8 text-right">
-										<Link
-											to="#!"
-											className={`flex justify-between transition-colors ${
-												activeSubmenu === index
-													? " text-cyan-400 duration-300"
-													: "text-gray-700 duration-300"
-											}`}
-											onClick={() => toggleSubmenuHandler(index)}
-										>
-											{col.header}
-											<i
-												className={`fas fa-chevron-down transition-transform duration-300 origin-center ${
-													activeSubmenu === index ? "-rotate-180" : "rotate-0"
+								<ul
+									className={`bg-gray-200 divide-y divide-gray-300 ${
+										activeId === tab.id ? "content show" : "content"
+									}`}
+								>
+									{MEGAMENU.map((col, index) => (
+										<li key={index} className="py-4 px-8 text-right">
+											<Link
+												to="#!"
+												className={`flex justify-between transition-colors ${
+													activeSubmenu === index
+														? " text-cyan-400 duration-300"
+														: "text-gray-700 duration-300"
 												}`}
-											></i>
-										</Link>
-										{activeSubmenu === index && (
-											<ul className="text-gray-700 mt-2">
+												onClick={() => toggleSubmenuHandler(index)}
+											>
+												{col.header}
+												<i
+													className={`fas fa-chevron-down transition-transform duration-500 origin-center ${
+														activeSubmenu === index ? "-rotate-180" : "rotate-0"
+													}`}
+												></i>
+											</Link>
+											<ul
+												className={`text-gray-700 mt-3 transition-all origin-top duration-500 ${
+													activeSubmenu === index ? "content show" : "content"
+												}`}
+											>
 												{col.subs.map((item, index) => (
-													<li key={index} className="text-sm mb-1">
+													<li key={index} className="text-sm mb-1 px-4">
 														<a href="#!">{item}</a>
 													</li>
 												))}
 											</ul>
-										)}
-									</li>
-								))}
-							</ul>
-						)} */}
+										</li>
+									))}
+								</ul>
+							</Fragment>
+						)}
 					</Fragment>
 				))}
 			</ul>
@@ -144,3 +113,37 @@ const SideNav = ({ show, onClose, onTabSelect, activeId }) => {
 };
 
 export default SideNav;
+
+// const NAIVE_ACCORDION =  {activeId === tab.id && (
+// 	<ul className="bg-gray-200 divide-y divide-gray-300">
+// 		{categoryItems.map((col, index) => (
+// 			<li key={index} className="py-4 px-8 text-right">
+// 				<Link
+// 					to="#!"
+// 					className={`flex justify-between transition-colors ${
+// 						activeSubmenu === index
+// 							? " text-cyan-400 duration-300"
+// 							: "text-gray-700 duration-300"
+// 					}`}
+// 					onClick={() => toggleSubmenuHandler(index)}
+// 				>
+// 					{col.header}
+// 					<i
+// 						className={`fas fa-chevron-down transition-transform duration-300 origin-center ${
+// 							activeSubmenu === index ? "-rotate-180" : "rotate-0"
+// 						}`}
+// 					></i>
+// 				</Link>
+// 				{activeSubmenu === index && (
+// 					<ul className="text-gray-700 mt-2">
+// 						{col.subs.map((item, index) => (
+// 							<li key={index} className="text-sm mb-1">
+// 								<a href="#!">{item}</a>
+// 							</li>
+// 						))}
+// 					</ul>
+// 				)}
+// 			</li>
+// 		))}
+// 	</ul>
+// )}

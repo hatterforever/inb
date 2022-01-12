@@ -151,6 +151,8 @@ const NavBar = () => {
 									: "border-transparent duration-300"
 							}`}
 							onClick={() => toggleDropdownHandler(tab.id)}
+							onMouseEnter={() => toggleDropdownHandler(tab.id)}
+							onMouseLeave={() => toggleDropdownHandler(activeId)}
 						>
 							{tab.id === 3 && (
 								<Link className="w-full h-full" to="/">
@@ -164,9 +166,11 @@ const NavBar = () => {
 									<i className={`${tab.iconClass} mx-2`}></i>
 									{/* mega-menu */}
 									<ul
-										className={`border-none absolute left-1/2 top-[103%] transform -translate-x-1/2  w-full mx-auto ${
-											activeId === tab.id ? "flex" : "hidden"
-										} justify-evenly items-center bg-white rounded-md p-4 lg:py-8`}
+										className={`border-none absolute left-1/2  transform -translate-x-1/2  w-full mx-auto transition-all duration-300 ${
+											activeId === tab.id
+												? "visible opacity-100 top-[103%]"
+												: "invisible opacity-0 top-[120%]"
+										} flex justify-evenly items-center bg-white rounded-md p-4 lg:py-8`}
 									>
 										{MEGAMENU.map((col, index) => (
 											<li key={index} className="text-gray-800 text-right">

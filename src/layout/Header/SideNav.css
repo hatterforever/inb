@@ -1,3 +1,22 @@
 .sidenav {
 	--animate-duration: 0.7s;
 }
+
+.content {
+	max-height: 0;
+	overflow: hidden;
+	transition: all 0.5s cubic-bezier(0, 1, 0, 1);
+	-webkit-transition: all 0.5s cubic-bezier(0, 1, 0, 1);
+	-moz-transition: all 0.5s cubic-bezier(0, 1, 0, 1);
+	-ms-transition: all 0.5s cubic-bezier(0, 1, 0, 1);
+	-o-transition: all 0.5s cubic-bezier(0, 1, 0, 1);
+}
+.content.show {
+	height: auto;
+	max-height: 9999px;
+	transition: all 0.5s cubic-bezier(1, 0, 0.5, 0);
+	-webkit-transition: all 0.5s cubic-bezier(1, 0, 0.5, 0);
+	-moz-transition: all 0.5s cubic-bezier(1, 0, 0.5, 0);
+	-ms-transition: all 0.5s cubic-bezier(1, 0, 0.5, 0);
+	-o-transition: all 0.5s cubic-bezier(1, 0, 0.5, 0);
+}
