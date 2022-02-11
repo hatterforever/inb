@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import Overlay from "../../common/UI/Overlay";
+import Overlay from "../../shared/UI/Overlay";
 import SideNav from "./SideNav";
 
 export const TABS = [
@@ -56,6 +56,19 @@ export const MEGAMENU = [
 const NavBar = () => {
 	const [showSideNav, setShowSideNav] = useState(false);
 	const [activeId, setActiveId] = useState(null);
+	const [border, setBorder] = useState(false);
+
+	useEffect(() => {
+		const scroll = () => {
+			if (window.scrollY !== 0) setBorder(true);
+			else setBorder(false);
+		};
+		window.addEventListener("scroll", scroll);
+
+		return () => {
+			window.removeEventListener("scroll", scroll);
+		};
+	}, []);
 
 	const toggleSidenavHandler = () => setShowSideNav((prev) => !prev);
 
@@ -66,7 +79,11 @@ const NavBar = () => {
 
 	return (
 		<nav className="py-4 md:pb-0 lg:mx-8 xl:mx-[13%]">
-			<div className="flex items-center justify-between xl:justify-around py-4 px-8 xl:px-[13%] bg-white fixed top-0 left-0 w-screen  z-10">
+			<div
+				className={`flex items-center justify-between xl:justify-around py-4 px-8 xl:px-[13%] bg-white fixed top-0 left-0 w-screen z-10 border-b ${
+					border ? " border-b-slate-200" : "border-b-transparent"
+				}`}
+			>
 				<ul className="flex gap-5 text-gray-600 text-xl ">
 					<li>
 						<a href="#!" className="">
@@ -110,7 +127,7 @@ const NavBar = () => {
 					</Link>
 				</div>
 			</div>
-			<div className="flex gap-2 mt-14 mx-5 xl:mx-0 lg:mt-16 relative">
+			<div className="flex gap-2 mt-14 ml-8 mr-4 xl:mr-0 xl:ml-0 lg:mt-16 relative">
 				<form className="flex-1 mr-auto md:hidden">
 					<div className="flex relative">
 						<input
@@ -166,7 +183,7 @@ const NavBar = () => {
 									<i className={`${tab.iconClass} mx-2`}></i>
 									{/* mega-menu */}
 									<ul
-										className={`border-none absolute left-1/2  transform -translate-x-1/2  w-full mx-auto transition-all duration-300 ${
+										className={`border-none absolute z-10 left-1/2  transform -translate-x-1/2  w-full mx-auto transition-all duration-300 ${
 											activeId === tab.id
 												? "visible opacity-100 top-[103%]"
 												: "invisible opacity-0 top-[120%]"
@@ -176,7 +193,7 @@ const NavBar = () => {
 											<li key={index} className="text-gray-800 text-right">
 												<a
 													href="#!"
-													className="hover:text-cyan-400 active:text-cyan-400 transition-colors xl:font-medium"
+													className="hover:text-cyan-400 active:text-cyan-400 transition-colors xl:font-medium "
 												>
 													{col.header}
 												</a>
@@ -184,7 +201,7 @@ const NavBar = () => {
 													{col.subs.map((item, index) => (
 														<li
 															key={index}
-															className="text-sm mb-1 xl:text-base"
+															className="text-sm hover:text-cyan-400 active:text-cyan-400 duration-300 mb-1  xl:font-normal xl:text-gray-600"
 														>
 															<a href="#!">{item}</a>
 														</li>

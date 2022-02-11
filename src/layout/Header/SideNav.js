@@ -25,7 +25,7 @@ const SideNav = ({ show, onClose, onTabSelect, activeId }) => {
 			${show && "opacity-100 duration-300"} ${!show && "opacity-0 duration-1000"}  
 			py-4`}
 		>
-			<h2 className="font-semibold flex items-end border-b border-gray-300 px-4 pb-4">
+			<h2 className="font-semibold flex items-end border-b border-slate-500 px-4 pb-4">
 				<i className="fas fa-bars text-gray-700 py-0.5"></i>
 				<span className="mr-2 ml-auto text-gray-800">دسته‌بندی</span>
 				<i className="fas fa-times text-gray-500 text-lg" onClick={onClose}></i>
@@ -34,7 +34,7 @@ const SideNav = ({ show, onClose, onTabSelect, activeId }) => {
 				{TABS.map((tab) => (
 					<Fragment key={tab.id}>
 						{tab.id === 3 ? (
-							<li className="p-4 border-b border-slate-200 font-semibold flex items-center cursor-pointer text-gray-800">
+							<li className="p-4 border-b border-slate-500 font-semibold flex items-center cursor-pointer text-gray-800">
 								<i className={`${tab.iconClass} ml-2`}></i>
 								<Link to="/" onClick={onClose}>
 									خانه
@@ -44,7 +44,7 @@ const SideNav = ({ show, onClose, onTabSelect, activeId }) => {
 							<Fragment>
 								{" "}
 								<li
-									className={`p-4 border-b border-slate-200 font-semibold flex items-center cursor-pointer ${
+									className={`p-4 border-b border-slate-500 font-semibold flex items-center cursor-pointer ${
 										activeId === tab.id
 											? " text-cyan-400 duration-300"
 											: "text-gray-800 duration-300"
@@ -65,12 +65,12 @@ const SideNav = ({ show, onClose, onTabSelect, activeId }) => {
 									></i>
 								</li>
 								<ul
-									className={`bg-gray-200 divide-y divide-gray-300 ${
+									className={`bg-gray-200 divide-y divide-slate-400 ${
 										activeId === tab.id ? "content show" : "content"
 									}`}
 								>
 									{MEGAMENU.map((col, index) => (
-										<li key={index} className="py-4 px-8 text-right">
+										<li key={index} className={`py-3 px-8 text-right`}>
 											<Link
 												to="#!"
 												className={`flex justify-between transition-colors ${
@@ -88,12 +88,12 @@ const SideNav = ({ show, onClose, onTabSelect, activeId }) => {
 												></i>
 											</Link>
 											<ul
-												className={`text-gray-700 mt-3 transition-all origin-top duration-500 ${
+												className={`text-gray-700 mt-3 transition-all origin-top duration-500 border-b ${
 													activeSubmenu === index ? "content show" : "content"
 												}`}
 											>
 												{col.subs.map((item, index) => (
-													<li key={index} className="text-sm mb-1 px-4">
+													<li key={index} className="text-sm px-4 py-2 submenu">
 														<a href="#!">{item}</a>
 													</li>
 												))}

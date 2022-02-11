@@ -5,7 +5,9 @@ import Header from "./layout/Header/Header";
 import LandingPage from "./pages/LandingPage";
 
 import "animate.css";
+import "react-slideshow-image/dist/styles.css";
 import "./App.css";
+import Footer from "./layout/Footer/Footer";
 
 const App = () => {
 	return (
@@ -22,6 +24,7 @@ const App = () => {
 					}
 				/>
 			</Routes>
+			<Footer />
 		</Fragment>
 	);
 };

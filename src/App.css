@@ -4,3 +4,28 @@
 	/* focus */
 	@apply focus:shadow-none transition duration-300 focus:outline-none;
 }
+
+.indicators {
+	position: absolute;
+	bottom: 5%;
+	left: 50%;
+	transform: translateX(-50%);
+	-webkit-transform: translateX(-50%);
+	-moz-transform: translateX(-50%);
+	-ms-transform: translateX(-50%);
+	-o-transform: translateX(-50%);
+}
+
+.indicator {
+	cursor: pointer;
+	padding: 0.3rem;
+	margin: 0 0.3rem;
+	border-radius: 50%;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	-ms-border-radius: 50%;
+	-o-border-radius: 50%;
+}
+.indicator.active {
+	background-color: #777;
+}

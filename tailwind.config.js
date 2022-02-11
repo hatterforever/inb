@@ -5,6 +5,9 @@ module.exports = {
 			container: {
 				center: true,
 			},
+			boxShadow: {
+				header: "0 5px 10px #333",
+			},
 		},
 	},
 	plugins: [],

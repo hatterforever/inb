@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+	font-family: "dirooz";
+	src: url("./assets/font/Dirooz.woff2") format("woff2"),
+		url("./assets/font/Dirooz.woff") format("woff"),
+		url("./assets/font/Dirooz.ttf") format("truetype");
+}
+
+body {
+	font-family: "dirooz", sans-serif;
+}
