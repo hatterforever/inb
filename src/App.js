@@ -1,20 +1,31 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 
+import { fetchBooks } from "./store/books/book-slice";
 import Header from "./layout/Header/Header";
 import LandingPage from "./pages/LandingPage";
+import Footer from "./layout/Footer/Footer";
+import BooksPage from "./pages/BooksPage";
+import SingleBookPage from "./pages/SingleBookPage";
 
 import "animate.css";
 import "react-slideshow-image/dist/styles.css";
 import "./App.css";
-import Footer from "./layout/Footer/Footer";
 
 const App = () => {
+	const dispatch = useDispatch();
+	useEffect(() => {
+		dispatch(fetchBooks());
+	}, [dispatch]);
+
 	return (
 		<Fragment>
 			<Header />
 			<Routes>
 				<Route path="/" element={<LandingPage />} />
+				<Route path="/books" element={<BooksPage />} />
+				<Route path="/books/:bookId" element={<SingleBookPage />} />
 				<Route
 					path="*"
 					element={

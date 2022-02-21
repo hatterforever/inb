@@ -1,3 +1,4 @@
+/* ! [ tailwind ] */
 .input {
 	@apply text-base text-gray-600 placeholder-gray-400 placeholder:text-sm  shadow-md;
 
@@ -5,6 +6,11 @@
 	@apply focus:shadow-none transition duration-300 focus:outline-none;
 }
 
+.filter-btn {
+	@apply px-4 py-2 rounded-md border border-gray-400 text-center bg-neutral-200 w-1/2 flex justify-center items-center;
+}
+
+/* ! [ Slides ] */
 .indicators {
 	position: absolute;
 	bottom: 5%;
@@ -28,4 +34,32 @@
 }
 .indicator.active {
 	background-color: #777;
+}
+
+/* ! [ Books PAGE ] */
+.text-box {
+	position: relative;
+	overflow: hidden;
+}
+.text-box .read-more.active {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	text-align: center;
+	margin: 0;
+	padding: 50px 0 10px;
+
+	/* background-image: linear-gradient(to bottom, transparent, black); */
+	background-image: -webkit-gradient(
+		linear,
+		left top,
+		left bottom,
+		color-stop(0.1, rgba(255, 0, 0, 0)),
+		color-stop(0.8, rgba(244, 244, 244, 1))
+	);
+}
+.text-box .read-more.deactive {
+	text-align: center;
+	margin-top: 0.5rem;
 }

@@ -34,11 +34,12 @@ const SideNav = ({ show, onClose, onTabSelect, activeId }) => {
 				{TABS.map((tab) => (
 					<Fragment key={tab.id}>
 						{tab.id === 3 ? (
-							<li className="p-4 border-b border-slate-500 font-semibold flex items-center cursor-pointer text-gray-800">
+							<li
+								onClick={onClose}
+								className="p-4 border-b border-slate-500 font-semibold flex items-center cursor-pointer text-gray-800"
+							>
 								<i className={`${tab.iconClass} ml-2`}></i>
-								<Link to="/" onClick={onClose}>
-									خانه
-								</Link>
+								<Link to="/">خانه</Link>
 							</li>
 						) : (
 							<Fragment>
@@ -94,7 +95,9 @@ const SideNav = ({ show, onClose, onTabSelect, activeId }) => {
 											>
 												{col.subs.map((item, index) => (
 													<li key={index} className="text-sm px-4 py-2 submenu">
-														<a href="#!">{item}</a>
+														<Link to="/books" onClick={onClose}>
+															{item}
+														</Link>
 													</li>
 												))}
 											</ul>

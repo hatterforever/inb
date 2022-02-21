@@ -203,7 +203,7 @@ const NavBar = () => {
 															key={index}
 															className="text-sm hover:text-cyan-400 active:text-cyan-400 duration-300 mb-1  xl:font-normal xl:text-gray-600"
 														>
-															<a href="#!">{item}</a>
+															<Link to="/books">{item}</Link>
 														</li>
 													))}
 												</ul>

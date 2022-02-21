@@ -6,7 +6,7 @@ import slide2 from "../assets/banner/slide-2.jpg";
 import slide3 from "../assets/banner/slide-3.jpg";
 import slide4 from "../assets/banner/slide-4.jpg";
 
-import api from "../api";
+import api from "../shared/api";
 import useWidth from "../hooks/useWidth";
 import BookSlider from "../shared/BookSlider/BookSlider";
 import Banner from "../shared/Banner/Banner";
@@ -91,7 +91,6 @@ const LandingPage = () => {
 				console.log(err);
 			}
 		};
-
 		getBooks();
 	}, []);
 

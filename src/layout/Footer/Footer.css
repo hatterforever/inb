@@ -1,10 +1,10 @@
 .footer__heading {
 	@apply text-gray-800 font-semibold mb-2;
-	@apply md:text-sm md:mb-4;
+	@apply md:text-sm lg:text-base md:mb-4;
 }
 .footer__list {
 	@apply text-sm text-gray-600 flex flex-col gap-y-2;
-	@apply md:text-xs md:gap-y-3;
+	@apply md:text-xs lg:text-sm md:gap-y-3;
 }
 .footer__social-item {
 	@apply py-2 px-3 border border-neutral-600 rounded-full;
