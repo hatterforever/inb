@@ -18,6 +18,11 @@ const SideNav = ({ show, onClose, onTabSelect, activeId }) => {
 		else setActiveSubmenu(id);
 	};
 
+	const onCloseSideNav = () => {
+		setActiveSubmenu(null);
+		onClose();
+	};
+
 	const content = (
 		<div
 			dir="rtl"
@@ -28,14 +33,17 @@ const SideNav = ({ show, onClose, onTabSelect, activeId }) => {
 			<h2 className="font-semibold flex items-end border-b border-slate-500 px-4 pb-4">
 				<i className="fas fa-bars text-gray-700 py-0.5"></i>
 				<span className="mr-2 ml-auto text-gray-800">دسته‌بندی</span>
-				<i className="fas fa-times text-gray-500 text-lg" onClick={onClose}></i>
+				<i
+					className="fas fa-times text-gray-500 text-lg"
+					onClick={onCloseSideNav}
+				></i>
 			</h2>
 			<ul>
 				{TABS.map((tab) => (
 					<Fragment key={tab.id}>
 						{tab.id === 3 ? (
 							<li
-								onClick={onClose}
+								onClick={onCloseSideNav}
 								className="p-4 border-b border-slate-500 font-semibold flex items-center cursor-pointer text-gray-800"
 							>
 								<i className={`${tab.iconClass} ml-2`}></i>
@@ -95,7 +103,7 @@ const SideNav = ({ show, onClose, onTabSelect, activeId }) => {
 											>
 												{col.subs.map((item, index) => (
 													<li key={index} className="text-sm px-4 py-2 submenu">
-														<Link to="/books" onClick={onClose}>
+														<Link to="/books" onClick={onCloseSideNav}>
 															{item}
 														</Link>
 													</li>

@@ -70,7 +70,10 @@ const NavBar = () => {
 		};
 	}, []);
 
-	const toggleSidenavHandler = () => setShowSideNav((prev) => !prev);
+	const toggleSidenavHandler = () => {
+		setActiveId(null);
+		setShowSideNav((prev) => !prev);
+	};
 
 	const toggleDropdownHandler = (id) => {
 		if (activeId === id) setActiveId(null);

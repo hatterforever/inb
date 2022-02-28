@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Slide } from "react-slideshow-image";
 
@@ -16,13 +16,12 @@ const SlideProperties = {
 
 const BookSlider = ({ title, data }) => {
 	const [slides, setSlides] = useState(2);
-	// console.log(data);
 
 	const width = useWidth();
 	// console.log(width);
 
-	useLayoutEffect(() => {
-		// console.log("layout effect");
+	useEffect(() => {
+		console.log("layout effect", width);
 		if (width < 768) setSlides(2);
 		else if (width >= 768 && width < 1024) setSlides(4);
 		else setSlides(6);
@@ -44,19 +43,21 @@ const BookSlider = ({ title, data }) => {
 						<div
 							key={i}
 							dir="rtl"
-							className="w-[96%] mx-auto md:w-[90%] flex flex-col gap-3 h-full cursor-grab"
+							className="w-[96%] mx-auto md:w-[90%] h-full cursor-grab"
 						>
-							<img
-								src={book.img}
-								alt={book.title}
-								className="rounded-md shadow-md drop-shadow-md"
-							/>
-							<h3 className=" font-semibold text-gray-700 mb-auto">
-								{book.title}
-							</h3>
-							<h3 className=" font-medium text-gray-400 text-opacity-70 text-sm">
-								{book.author}
-							</h3>
+							<Link to={`/books/${book.id}`} className="flex flex-col gap-3">
+								<img
+									src={book.img}
+									alt={book.title}
+									className="rounded-md shadow-md drop-shadow-md"
+								/>
+								<h3 className=" font-semibold text-gray-700 mb-auto">
+									{book.title}
+								</h3>
+								<h3 className=" font-medium text-gray-400 text-opacity-70 text-sm">
+									{book.author}
+								</h3>
+							</Link>
 						</div>
 					))}
 				</Slide>

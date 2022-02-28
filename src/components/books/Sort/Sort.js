@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { bookActions, typeSelect } from "../../store/books/book-slice";
+import { bookActions, typeSelect } from "../../../store/books/book-slice";
 
 const SORT_OPTIONS = ["صفحات - صعودی", "صفحات - نزولی"];
 
@@ -22,11 +22,12 @@ const Sort = ({ onClose }) => {
 				<i className="fas fa-times text-gray-500 text-lg" onClick={onClose}></i>
 			</h2>
 			<ul className="py-4 px-2">
-				{SORT_OPTIONS.map((opt) => {
+				{SORT_OPTIONS.map((opt, index) => {
 					const type = opt.includes("نزولی") ? "dec" : "inc";
 
 					return (
 						<li
+							key={index}
 							className="p-2 flex items-center"
 							onClick={() => sortClickedHandler(type)}
 						>
@@ -34,7 +35,7 @@ const Sort = ({ onClose }) => {
 								type="radio"
 								name="sort"
 								id={type}
-								checked={sortType === type}
+								defaultChecked={sortType === type}
 							/>
 							<label className="text-sm text-gray-600 mr-2" htmlFor={type}>
 								{opt}

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
+import { Link } from "react-router-dom";
 
 import { fetchBooks, bookSelect, typeSelect } from "../store/books/book-slice";
 import Modal from "../shared/UI/Modal";
@@ -37,34 +38,26 @@ const BooksPage = () => {
 	};
 
 	const dispatch = useDispatch();
-	// console.log(books);
-
 	useEffect(() => {
 		dispatch(fetchBooks());
 	}, [dispatch]);
 
 	let bookList = [...books];
-	if (sortType === "dec") {
-		bookList.sort((a, b) => {
-			return b.pages - a.pages;
-		});
-	} else {
-		bookList.sort((a, b) => {
-			return a.pages - b.pages;
-		});
-	}
+	bookList.sort((a, b) => {
+		return sortType === "dec" ? b.pages - a.pages : a.pages - b.pages;
+	});
 
 	let list = (
 		<ul className="flex gap-x-4 gap-y-6 flex-wrap justify-center">
 			{bookList.map((book, index) => (
 				<li key={index} dir="rtl" className="w-2/5 flex flex-col gap-3 ">
-					<a href="#!">
+					<Link to={book.id}>
 						<img
 							src={book.img}
 							alt={book.title}
 							className="rounded-md shadow-md drop-shadow-md"
 						/>
-					</a>
+					</Link>
 					<h3 className=" font-semibold text-gray-700 mb-auto">{book.title}</h3>
 					<h3 className=" font-medium text-gray-400 text-opacity-70 text-sm">
 						{book.author}

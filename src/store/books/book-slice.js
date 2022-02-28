@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 import api from "../../shared/api";
 
+// ! [ Slice ]
 const initialState = { bookList: [], sort: "inc" };
 
 const bookSlice = createSlice({
@@ -27,15 +28,53 @@ const bookSlice = createSlice({
 export const fetchBooks = createAsyncThunk("books/fetchBooks", async () => {
 	const res = await api.get("books");
 	const { data } = res;
+	console.log("sad");
 
 	return data;
 });
 
-export const bookSelect = (state) => state.books.bookList;
+// ! [ selectors ]
 export const typeSelect = (state) => state.books.sort;
+
+export const bookSelect = (state) => state.books.bookList;
+
 export const findBookById = (state, id) => {
-	console.log(id, state);
-	return state.books.bookList.find((book) => book.id === id);
+	const foundBook = state.books.bookList.find((book) => book.id === id);
+
+	return { ...foundBook };
+};
+
+export const tagSelect = (state) => {
+	const tagsArray = state.books.bookList.map((book) => book.tags);
+	const allTags = tagsArray.reduce((acc, curr) => {
+		return [...acc, ...curr];
+	});
+	const tagList = [];
+	for (const tag of allTags) {
+		if (!tagList.includes(tag)) tagList.push(tag);
+	}
+
+	return tagList;
+};
+
+export const authorSelect = (state) => {
+	const bookList = state.books.bookList;
+	const authorsList = [];
+	for (const { author } of bookList) {
+		if (!authorsList.includes(author)) authorsList.push(author);
+	}
+
+	return authorsList;
+};
+
+export const translatorSelect = (state) => {
+	const bookList = state.books.bookList;
+	const translatorsList = [];
+	for (const { translator } of bookList) {
+		if (!translatorsList.includes(translator)) translatorsList.push(translator);
+	}
+
+	return translatorsList;
 };
 
 export const bookActions = bookSlice.actions;
