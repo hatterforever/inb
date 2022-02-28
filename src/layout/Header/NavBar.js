@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 
 import Overlay from "../../shared/UI/Overlay";
 import SideNav from "./SideNav";
@@ -54,6 +55,8 @@ export const MEGAMENU = [
 ];
 
 const NavBar = () => {
+	const { logout, isAuthenticated, isLoading } = useAuth0();
+
 	const [showSideNav, setShowSideNav] = useState(false);
 	const [activeId, setActiveId] = useState(null);
 	const [border, setBorder] = useState(false);
@@ -80,6 +83,10 @@ const NavBar = () => {
 		else setActiveId(id);
 	};
 
+	if (isLoading) {
+		return <div>Loading ...</div>;
+	}
+
 	return (
 		<nav className="py-4 md:pb-0 lg:mx-8 xl:mx-[13%]">
 			<div
@@ -89,12 +96,20 @@ const NavBar = () => {
 			>
 				<ul className="flex gap-5 text-gray-600 text-xl ">
 					<li>
-						<a href="#!" className="">
+						<NavLink
+							to={isAuthenticated ? "" : "/authentication"}
+							onClick={isAuthenticated && logout}
+							className={({ isActive }) => (isActive ? "text-cyan-400" : "")}
+						>
 							<span className="hidden md:inline-block text-base mx-2 relative -top-0.5">
-								ورود / ثبت‌نام{" "}
+								{isAuthenticated ? "خروج" : "ورود / ثبت‌نام"}
 							</span>
-							<i className="fas fa-user"></i>
-						</a>
+							{isAuthenticated ? (
+								<i className="transform rotate-180 fa-solid fa-arrow-right-from-bracket"></i>
+							) : (
+								<i className="fas fa-user"></i>
+							)}
+						</NavLink>
 					</li>
 					<li>
 						<a href="#!">
