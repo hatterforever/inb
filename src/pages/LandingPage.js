@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useAuth0 } from "@auth0/auth0-react";
 
 import { Slide } from "react-slideshow-image";
 import slide1 from "../assets/banner/slide-1.jpg";
@@ -67,9 +66,6 @@ const SlideProperties = {
 const LandingPage = () => {
 	const [books, setBooks] = useState([]);
 	const [audioBooks, setAudioBooks] = useState([]);
-
-	const { user } = useAuth0();
-	console.log(user);
 
 	useEffect(() => {
 		const getAudioBooks = async () => {

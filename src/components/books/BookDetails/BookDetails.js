@@ -1,9 +1,10 @@
 import React from "react";
 
 import Button from "../../../shared/UI/Button";
+import CommentBox from "../CommentBox/CommentBox";
 
 const BookDetails = ({
-	book: { author, img, pages, title, translator },
+	book: { author, img, pages, title, translator, id },
 	language,
 }) => (
 	<>
@@ -107,17 +108,17 @@ const BookDetails = ({
 			</p>
 		</div>
 
-		<div className="bg-neutral-200 py-6 px-4">
+		<div className="bg-neutral-200 py-6 px-4 mb-10">
 			<h3 className="text-center w-11/12 mx-auto text-lg text-gray-800">
 				مشخصات کتاب {title}
 			</h3>
 			<ul className="mt-5 flex flex-col text-gray-500 gap-y-2">
 				<li className="p-1 text-sm flex items-center gap-x-3">
-					<i className="text-2xl fa-solid fa-layer-group"></i>
+					<i className="text-gray-400 text-2xl fa-solid fa-layer-group"></i>
 					<span>نشر نیلوفر</span>
 				</li>
 				<li className="p-1 text-sm flex items-center gap-x-3">
-					<i className="text-2xl fa-solid fa-print"></i>
+					<i className="text-gray-400 text-2xl fa-solid fa-print"></i>
 					<span>
 						قیمت نسخه چاپی:
 						<span className="inline-block mr-2 text-base leading-relaxed">
@@ -126,15 +127,17 @@ const BookDetails = ({
 					</span>
 				</li>
 				<li className="p-1 text-sm flex items-center gap-x-3">
-					<i className="text-2xl fa-solid fa-language"></i>
+					<i className="text-gray-400 text-2xl fa-solid fa-language"></i>
 					<span>{language}</span>
 				</li>
 				<li className="p-1 text-sm flex items-center gap-x-3">
-					<i className="text-2xl fa-solid fa-scroll"></i>
+					<i className="text-gray-400 text-2xl fa-solid fa-scroll"></i>
 					<span>{pages} صفحه</span>
 				</li>
 			</ul>
 		</div>
+
+		<CommentBox id={id} />
 	</>
 );
 

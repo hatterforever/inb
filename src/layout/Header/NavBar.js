@@ -55,11 +55,17 @@ export const MEGAMENU = [
 ];
 
 const NavBar = () => {
-	const { logout, isAuthenticated, isLoading } = useAuth0();
-
 	const [showSideNav, setShowSideNav] = useState(false);
 	const [activeId, setActiveId] = useState(null);
 	const [border, setBorder] = useState(false);
+
+	const {
+		loginWithRedirect,
+		logout,
+		isAuthenticated,
+		isLoading,
+		user,
+	} = useAuth0();
 
 	useEffect(() => {
 		const scroll = () => {
@@ -97,9 +103,8 @@ const NavBar = () => {
 				<ul className="flex gap-5 text-gray-600 text-xl ">
 					<li>
 						<NavLink
-							to={isAuthenticated ? "" : "/authentication"}
-							onClick={isAuthenticated && logout}
-							className={({ isActive }) => (isActive ? "text-cyan-400" : "")}
+							to="#!"
+							onClick={isAuthenticated ? logout : loginWithRedirect}
 						>
 							<span className="hidden md:inline-block text-base mx-2 relative -top-0.5">
 								{isAuthenticated ? "خروج" : "ورود / ثبت‌نام"}
@@ -120,6 +125,11 @@ const NavBar = () => {
 						<a href="#!">
 							<i className="fas fa-gift"></i>
 						</a>
+					</li>
+					<li>
+						<Link to="/books/add">
+							<i className="fas fa-book"></i>
+						</Link>
 					</li>
 				</ul>
 
