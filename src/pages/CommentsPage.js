@@ -46,7 +46,7 @@ const CommentsPage = () => {
 	return (
 		<div className="py-10" dir="rtl">
 			<form
-				className="w-10/12 mx-auto border shadow-lg p-5 flex flex-col justify-center rounded-md"
+				className="w-10/12 lg:w-3/4 xl:w-1/2 mx-auto border shadow-lg p-5 flex flex-col justify-center rounded-md"
 				onSubmit={submitHandler}
 			>
 				<div className="flex flex-col gap-y-4">

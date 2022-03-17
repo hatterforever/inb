@@ -27,7 +27,7 @@ const SingleBookPage = () => {
 	);
 
 	return (
-		<section dir="rtl" className="py-8">
+		<section dir="rtl" className="py-8 md:px-8 lg:px-0">
 			<BookDetails book={foundBook} language={bookLanguage} />
 		</section>
 	);

@@ -38,7 +38,7 @@ const CommentBox = ({ id }) => {
 	const commentBtn = (
 		<Link
 			to={`/books/${id}/comments`}
-			className="w-1/2 mx-auto border border-neutral-500 text-neutral-500 py-2 px-4 text-sm flex justify-center items-center gap-x-3"
+			className="w-1/2 lg:w-1/5 mx-auto border border-neutral-500 text-neutral-500 py-2 lg:py-3 px-4 text-sm lg:text-base flex justify-center items-center gap-x-3"
 		>
 			<i className="fa-solid fa-message"></i>
 			<span>نظر خود را بنویسید</span>
@@ -48,7 +48,7 @@ const CommentBox = ({ id }) => {
 	if (!isAuthenticated) return notLoggedIn;
 
 	return (
-		<div className="comment-box ">
+		<div className="comment-box">
 			{comments.length === 0 ? (
 				<>
 					<h3 className="comment-box__heading mb-4">
@@ -61,9 +61,12 @@ const CommentBox = ({ id }) => {
 					{commentBtn}
 					<ul className="mt-6">
 						{comments.map((cm) => (
-							<div>
-								<h4>{cm.user}</h4>
-								<p>{cm.text}</p>
+							<div className="border-y border-gray-400 border-dashed pt-6 pb-2 px-6">
+								<p className="lg:text-lg text-gray-700 mb-3">{cm.text}</p>
+								<p className="text-gray-600 text-sm text-left">
+									<span className="mx-3">توسط:</span>
+									{cm.user}
+								</p>
 							</div>
 						))}
 					</ul>

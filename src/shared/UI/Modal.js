@@ -11,7 +11,7 @@ const Modal = ({ show, type, onClose }) => {
 			dir="rtl"
 			className={
 				show
-					? "fixed w-4/5 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 rounded-md overflow-hidden shadow-md drop-shadow-md bg-white"
+					? "fixed w-4/5 lg:w-1/2 xl:w-1/3 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 rounded-md overflow-hidden shadow-md drop-shadow-md bg-white"
 					: "hidden"
 			}
 		>

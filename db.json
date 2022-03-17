@@ -160,21 +160,6 @@
         "رمان",
         "فلسفه"
       ],
-      "title": "مرد",
-      "author": "او",
-      "translator": "من",
-      "pages": 678,
-      "authorId": "da3e6df2-0ea7-4cfb-98da-bb392d202ad5",
-      "img": "/uploads/1087748.jpg",
-      "id": "DUl__A-"
-    },
-    {
-      "tags": [
-        "ادبیات کلاسیک",
-        "رمان فلسفی",
-        "رمان",
-        "فلسفه"
-      ],
       "title": "ما",
       "author": "من",
       "translator": "تو",
@@ -315,6 +300,12 @@
       "bookId": "b4",
       "user": "sing",
       "id": "naR_33P"
+    },
+    {
+      "text": "ثبت نظر برای تست ریسپانسیو.",
+      "bookId": "b5",
+      "user": "tank",
+      "id": "l8mcsWT"
     }
   ]
 }

@@ -17,9 +17,12 @@ const Sort = ({ onClose }) => {
 
 	return (
 		<div>
-			<h2 className="border-b-2 p-4 flex justify-between items-center">
+			<h2 className="border-b-2 p-4 flex justify-between items-center lg:text-xl">
 				<span>مرتب سازی بر اساس</span>
-				<i className="fas fa-times text-gray-500 text-lg" onClick={onClose}></i>
+				<i
+					className="fas fa-times text-gray-500 text-lg lg:text-xl"
+					onClick={onClose}
+				></i>
 			</h2>
 			<ul className="py-4 px-2">
 				{SORT_OPTIONS.map((opt, index) => {
@@ -32,12 +35,16 @@ const Sort = ({ onClose }) => {
 							onClick={() => sortClickedHandler(type)}
 						>
 							<input
+								className="cursor-pointer"
 								type="radio"
 								name="sort"
 								id={type}
 								defaultChecked={sortType === type}
 							/>
-							<label className="text-sm text-gray-600 mr-2" htmlFor={type}>
+							<label
+								className="text-sm lg:text-base cursor-pointer text-gray-600 mr-2"
+								htmlFor={type}
+							>
 								{opt}
 							</label>
 						</li>

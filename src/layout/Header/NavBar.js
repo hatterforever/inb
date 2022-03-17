@@ -228,21 +228,21 @@ const NavBar = () => {
 											activeId === tab.id
 												? "visible opacity-100 top-[103%]"
 												: "invisible opacity-0 top-[120%]"
-										} flex justify-evenly items-center bg-white rounded-md p-4 lg:py-8`}
+										} flex justify-evenly items-center bg-white rounded-md p-4 lg:py-8 `}
 									>
 										{MEGAMENU.map((col, index) => (
 											<li key={index} className="text-gray-800 text-right">
 												<a
 													href="#!"
-													className="hover:text-cyan-400 active:text-cyan-400 transition-colors xl:font-medium "
+													className="hover:text-cyan-400 active:text-cyan-400 transition-colors xl:font-medium lg:text-xl"
 												>
 													{col.header}
 												</a>
-												<ul className="text-gray-500 mt-2">
+												<ul className="text-gray-500 mt-4">
 													{col.subs.map((item, index) => (
 														<li
 															key={index}
-															className="text-sm hover:text-cyan-400 active:text-cyan-400 duration-300 mb-1  xl:font-normal xl:text-gray-600"
+															className="text-sm hover:text-cyan-400 active:text-cyan-400 duration-300 mb-2  xl:font-normal lg:text-base xl:text-gray-600"
 														>
 															<Link to="/books">{item}</Link>
 														</li>

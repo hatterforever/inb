@@ -48,9 +48,13 @@ const BooksPage = () => {
 	});
 
 	let list = (
-		<ul className="flex gap-x-4 gap-y-6 flex-wrap justify-evenly">
+		<ul className="w-10/12 mx-auto flex gap-x-4 gap-y-6 lg:gap-y-10 flex-wrap justify-around">
 			{bookList.map((book, index) => (
-				<li key={index} dir="rtl" className="w-2/5 flex flex-col gap-y-4">
+				<li
+					key={index}
+					dir="rtl"
+					className="w-[45%] md:w-1/5 lg:w-1/6 flex flex-col gap-y-4"
+				>
 					<Link to={book.id} className="h-3/4 flex flex-col">
 						<img
 							src={book.img}
@@ -74,7 +78,7 @@ const BooksPage = () => {
 	return (
 		<section id="books-section-scroll" dir="rtl" className="py-8 px-4">
 			{/* buttons */}
-			<div className="flex gap-x-2">
+			<div className="flex gap-x-2 md:w-10/12 mx-auto">
 				<button
 					className="filter-btn"
 					onClick={() => buttonClickedHandler("filter")}
@@ -94,7 +98,7 @@ const BooksPage = () => {
 			<Modal type={modal.type} show={modal.show} onClose={setModal} />
 
 			{/* text-box */}
-			<div className="my-10 bg-neutral-200 rounded-md">
+			<div className="my-10 lg:mb-16 bg-neutral-200 rounded-md md:w-10/12 mx-auto">
 				<div className={`text-box p-4 ${textBox.maxHeight}`}>
 					<h4>چرا رمان و داستان بخوانیم ؟</h4>
 					<p className="text-sm mt-3 text-gray-700">
