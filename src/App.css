@@ -1,4 +1,8 @@
 /* ! [ tailwind ] */
+.flex-y-centerX {
+	@apply flex flex-col justify-center;
+}
+
 .input {
 	@apply text-base text-gray-600 placeholder-gray-400 placeholder:text-sm  shadow-md;
 
@@ -17,6 +21,7 @@
 	@apply text-center leading-loose text-sm;
 }
 
+/* ! [ utils ] */
 .before::before {
 	content: "";
 	display: inline-block;

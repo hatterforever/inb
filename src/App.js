@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Routes, Route, Link } from "react-router-dom";
@@ -18,10 +18,14 @@ import AddBookPage from "./pages/AddBookPage";
 import Footer from "./layout/Footer/Footer";
 
 const App = () => {
-	const { user, isLoading } = useAuth0();
+	const [isAdmin, setIsAdmin] = useState(false);
+	const { user, isAuthenticated } = useAuth0();
 
-	let isAdmin;
-	if (!isLoading) isAdmin = user.nickname === "admin";
+	useEffect(() => {
+		if (isAuthenticated && user.nickname === "admin") setIsAdmin(true);
+		else setIsAdmin(false);
+		//eslint-disable-next-line
+	}, [isAuthenticated]);
 
 	const dispatch = useDispatch();
 	useEffect(() => {
@@ -34,8 +38,8 @@ const App = () => {
 			<Header />
 			<Routes>
 				<Route path="/" element={<LandingPage />} />
+				{isAdmin && <Route path="admin/books/add" element={<AddBookPage />} />}
 				<Route path="/books" element={<BooksPage />} />
-				<Route path="/books/add" element={<AddBookPage />} />
 				<Route path="/books/:bookId" element={<SingleBookPage />} />
 				<Route path="/books/:bookId/comments" element={<CommentsPage />} />
 				<Route

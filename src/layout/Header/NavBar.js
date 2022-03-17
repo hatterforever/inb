@@ -55,6 +55,7 @@ export const MEGAMENU = [
 ];
 
 const NavBar = () => {
+	const [isAdmin, setIsAdmin] = useState(false);
 	const [showSideNav, setShowSideNav] = useState(false);
 	const [activeId, setActiveId] = useState(null);
 	const [border, setBorder] = useState(false);
@@ -67,6 +68,9 @@ const NavBar = () => {
 		user,
 	} = useAuth0();
 
+	let username;
+	if (!isLoading && isAuthenticated) username = user.nickname;
+
 	useEffect(() => {
 		const scroll = () => {
 			if (window.scrollY !== 0) setBorder(true);
@@ -78,6 +82,13 @@ const NavBar = () => {
 			window.removeEventListener("scroll", scroll);
 		};
 	}, []);
+
+	useEffect(() => {
+		if (!isLoading) {
+			if (username === "admin") setIsAdmin(true);
+			else setIsAdmin(false);
+		}
+	}, [isLoading, username]);
 
 	const toggleSidenavHandler = () => {
 		setActiveId(null);
@@ -126,11 +137,13 @@ const NavBar = () => {
 							<i className="fas fa-gift"></i>
 						</a>
 					</li>
-					<li>
-						<Link to="/books/add">
-							<i className="fas fa-book"></i>
-						</Link>
-					</li>
+					{isAdmin && (
+						<li>
+							<Link to="admin/books/add">
+								<i className="fas fa-book"></i>
+							</Link>
+						</li>
+					)}
 				</ul>
 
 				<form className="hidden md:block w-5/12  ml-auto mr-6">

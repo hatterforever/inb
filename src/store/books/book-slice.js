@@ -17,6 +17,14 @@ const bookSlice = createSlice({
 				return { payload: type };
 			},
 		},
+		addBook: {
+			reducer(state, action) {
+				state.bookList.push(action.payload);
+			},
+			prepare(data) {
+				return { payload: data };
+			},
+		},
 	},
 	extraReducers(builder) {
 		builder.addCase(fetchBooks.fulfilled, (state, action) => {
@@ -28,7 +36,7 @@ const bookSlice = createSlice({
 export const fetchBooks = createAsyncThunk("books/fetchBooks", async () => {
 	const res = await api.get("books");
 	const { data } = res;
-	console.log("sad");
+	// console.log("sad");
 
 	return data;
 });

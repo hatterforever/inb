@@ -48,18 +48,20 @@ const BooksPage = () => {
 	});
 
 	let list = (
-		<ul className="flex gap-x-4 gap-y-6 flex-wrap justify-center">
+		<ul className="flex gap-x-4 gap-y-6 flex-wrap justify-evenly">
 			{bookList.map((book, index) => (
-				<li key={index} dir="rtl" className="w-2/5 flex flex-col gap-3 ">
-					<Link to={book.id}>
+				<li key={index} dir="rtl" className="w-2/5 flex flex-col gap-y-4">
+					<Link to={book.id} className="h-3/4 flex flex-col">
 						<img
 							src={book.img}
 							alt={book.title}
-							className="rounded-md shadow-md drop-shadow-md"
+							className="rounded-md shadow-md drop-shadow-md mt-auto"
 						/>
 					</Link>
-					<h3 className=" font-semibold text-gray-700 mb-auto">{book.title}</h3>
-					<h3 className=" font-medium text-gray-400 text-opacity-70 text-sm">
+					<h3 className=" font-semibold text-gray-700 mb-auto mt-2">
+						{book.title}
+					</h3>
+					<h3 className=" font-medium text-gray-400 text-opacity-70 text-sm ">
 						{book.author}
 					</h3>
 				</li>

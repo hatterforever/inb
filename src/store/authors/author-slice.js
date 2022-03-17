@@ -19,7 +19,7 @@ export const fetchAuthors = createAsyncThunk(
 	async () => {
 		const res = await api.get("authors");
 		const { data } = res;
-		console.log("das");
+		// console.log("das");
 
 		return data;
 	}

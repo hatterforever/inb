@@ -1,14 +1,10 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
 import api from "../shared/api";
-import axios from "axios";
 
 const CommentsPage = () => {
-	// const [file, setFile] = useState({ file: {}, filename: "" });
-	const [uploaded, setUploaded] = useState({});
-
 	const { user, isLoading, isAuthenticated, loginWithRedirect } = useAuth0();
 
 	const navigate = useNavigate();
@@ -22,8 +18,6 @@ const CommentsPage = () => {
 			loginWithRedirect();
 		}
 	}, [isAuthenticated, loginWithRedirect]);
-
-	useEffect(() => console.log(uploaded));
 
 	if (isLoading) return <p>در حال بارگذاری</p>;
 
@@ -47,29 +41,6 @@ const CommentsPage = () => {
 
 		console.log(res);
 		navigate(`/books/${bookId}`);
-	};
-
-	const upload = async (e) => {
-		// setFile({
-		// 	file: e.target.files[0],
-		// 	fileName: e.target.files[0].name,
-		// });
-
-		const formData = new FormData();
-		formData.append("file", e.target.files[0]);
-
-		try {
-			const res = await axios.post("http://localhost:5500/upload", formData, {
-				headers: {
-					"Content-Type": "multipart/form-data",
-				},
-			});
-
-			const { filePath, fileName } = res.data;
-			setUploaded({ fileName, filePath });
-		} catch (error) {
-			console.log(error);
-		}
 	};
 
 	return (
@@ -96,7 +67,6 @@ const CommentsPage = () => {
 					ثبت نظر
 				</button>
 			</form>
-			<input type="file" name="img" id="img" onChange={upload} />
 		</div>
 	);
 };

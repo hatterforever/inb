@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import {
 	fetchAuthors,
@@ -10,6 +10,7 @@ import { fetchBooks, findBookById } from "../store/books/book-slice";
 import BookDetails from "../components/books/BookDetails/BookDetails";
 
 const SingleBookPage = () => {
+	const navigate = useNavigate();
 	const { bookId } = useParams();
 
 	const dispatch = useDispatch();
@@ -19,6 +20,8 @@ const SingleBookPage = () => {
 	}, [dispatch]);
 
 	const foundBook = useSelector((state) => findBookById(state, bookId));
+	// console.log(foundBook);
+	if (!foundBook.authorId) navigate("/404");
 	const bookLanguage = useSelector((state) =>
 		languageByIdSelect(state, foundBook.authorId)
 	);
